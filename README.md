@@ -57,3 +57,6 @@ When the maximum number of destruction pieces has been reached, if this is check
 
 ## Technical Details
 The base class is DestructibleBody, which extends Rigidbody. This is forced to be in static mode. The base mesh provided is used to make a base CSG on runtime which will be used to remove "chunks" when the *_destruct* method is called, which takes in the collision position and the surface normal at the collision point.
+
+## Collaboration
+Feel free to improve and optimize this code and create pull requests or issues. If you create a pull request, please credit yourself in this README by adding your name/alias at the top.
