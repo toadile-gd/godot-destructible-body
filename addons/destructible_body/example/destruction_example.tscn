@@ -1,0 +1,301 @@
+[gd_scene load_steps=37 format=2]
+
+[ext_resource path="res://addons/destructible_body/destructible_body.gd" type="Script" id=1]
+[ext_resource path="res://addons/destructible_body/example/player.gd" type="Script" id=2]
+[ext_resource path="res://addons/destructible_body/example/rubble_particle.tres" type="Material" id=3]
+[ext_resource path="res://addons/destructible_body/example/tile.png" type="Texture" id=4]
+[ext_resource path="res://addons/destructible_body/example/proto.tres" type="Material" id=5]
+[ext_resource path="res://addons/destructible_body/example/rubble_particle_mesh.tres" type="QuadMesh" id=6]
+[ext_resource path="res://addons/destructible_body/example/io.tscn" type="PackedScene" id=7]
+[ext_resource path="res://addons/destructible_body/example/default_env.tres" type="Environment" id=8]
+[ext_resource path="res://addons/destructible_body/example/cake.obj" type="ArrayMesh" id=9]
+[ext_resource path="res://addons/destructible_body/example/cake_albedo.png" type="Texture" id=10]
+[ext_resource path="res://addons/destructible_body/example/cake_insides.png" type="Texture" id=11]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.5
+height = 1.5
+
+[sub_resource type="CapsuleMesh" id=2]
+radius = 0.5
+mid_height = 1.5
+
+[sub_resource type="CylinderShape" id=3]
+radius = 0.5
+height = 1.0
+
+[sub_resource type="CubeMesh" id=4]
+
+[sub_resource type="BoxShape" id=5]
+
+[sub_resource type="CubeMesh" id=6]
+material = ExtResource( 5 )
+
+[sub_resource type="PrismMesh" id=7]
+
+[sub_resource type="SpatialMaterial" id=8]
+albedo_texture = ExtResource( 4 )
+uv1_scale = Vector3( 10, 10, 4 )
+
+[sub_resource type="SpatialMaterial" id=9]
+albedo_color = Color( 0.670588, 0.647059, 0.403922, 1 )
+albedo_texture = ExtResource( 4 )
+uv1_scale = Vector3( 10, 10, 10 )
+
+[sub_resource type="SphereMesh" id=10]
+radial_segments = 5
+rings = 2
+
+[sub_resource type="CubeMesh" id=11]
+
+[sub_resource type="SpatialMaterial" id=12]
+albedo_color = Color( 0.615686, 0.478431, 0.721569, 1 )
+albedo_texture = ExtResource( 4 )
+uv1_scale = Vector3( 10, 10, 4 )
+
+[sub_resource type="SphereMesh" id=13]
+radial_segments = 5
+rings = 2
+
+[sub_resource type="SpatialMaterial" id=14]
+albedo_color = Color( 0.584314, 0.847059, 0.866667, 0.588235 )
+albedo_texture = ExtResource( 4 )
+uv1_scale = Vector3( 10, 10, 4 )
+
+[sub_resource type="SphereMesh" id=15]
+radial_segments = 5
+rings = 2
+
+[sub_resource type="SpatialMaterial" id=16]
+albedo_color = Color( 0.478431, 0.8, 0.0470588, 1 )
+albedo_texture = ExtResource( 4 )
+uv1_scale = Vector3( 10, 10, 4 )
+
+[sub_resource type="SphereMesh" id=17]
+radial_segments = 5
+rings = 3
+
+[sub_resource type="CylinderMesh" id=18]
+radial_segments = 16
+
+[sub_resource type="SpatialMaterial" id=19]
+albedo_color = Color( 0.737255, 0.313726, 0.313726, 1 )
+albedo_texture = ExtResource( 4 )
+uv1_scale = Vector3( 10, 10, 4 )
+
+[sub_resource type="SphereMesh" id=20]
+radial_segments = 5
+rings = 3
+
+[sub_resource type="SpatialMaterial" id=21]
+albedo_texture = ExtResource( 10 )
+
+[sub_resource type="SpatialMaterial" id=22]
+albedo_texture = ExtResource( 11 )
+uv1_triplanar = true
+
+[sub_resource type="SphereMesh" id=23]
+radial_segments = 6
+rings = 3
+
+[sub_resource type="BoxShape" id=24]
+
+[sub_resource type="CubeMesh" id=25]
+
+[node name="Scene" type="Spatial"]
+
+[node name="player" type="KinematicBody" parent="."]
+transform = Transform( 0.0282529, 0, -0.999601, 0, 1, 0, 0.999601, 0, 0.0282529, -4.3803, 0, -0.466949 )
+script = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="player"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
+shape = SubResource( 1 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="player/CollisionShape"]
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape2" type="CollisionShape" parent="player"]
+transform = Transform( 1, 0, 0, 0, 1, -1.1921e-07, 0, 1.1921e-07, 1, 0, -0.75, 0 )
+shape = SubResource( 3 )
+disabled = true
+
+[node name="Head" type="Spatial" parent="player"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+
+[node name="Camera" type="Camera" parent="player/Head"]
+environment = ExtResource( 8 )
+
+[node name="MeshInstance" type="MeshInstance" parent="player/Head"]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, -0.5 )
+mesh = SubResource( 4 )
+material/0 = null
+
+[node name="RayCast" type="RayCast" parent="player/Head"]
+transform = Transform( 1, 0, 0, 0, 0.999999, 0, 0, 0, 1, 0, 0, -5.96046e-08 )
+enabled = true
+cast_to = Vector3( 0, 0, -100 )
+
+[node name="GroundCheck" type="RayCast" parent="player"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.409894, 0 )
+enabled = true
+
+[node name="env" type="Spatial" parent="."]
+
+[node name="StaticBody" type="StaticBody" parent="env"]
+transform = Transform( 50, 0, 0, 0, 0.5, 0, 0, 0, 50, 0, -2, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="env/StaticBody"]
+shape = SubResource( 5 )
+
+[node name="MeshInstance" type="MeshInstance" parent="env/StaticBody/CollisionShape"]
+mesh = SubResource( 6 )
+material/0 = null
+
+[node name="DirectionalLight" type="DirectionalLight" parent="env"]
+transform = Transform( 1, 0, 0, 0, 0.635876, 0.771791, 0, -0.771791, 0.635876, 0, -8.18816, 0 )
+shadow_enabled = true
+
+[node name="DestructibleBody3" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.24139, -0.56126, -2.55796 )
+mode = 1
+contacts_reported = 4
+contact_monitor = true
+can_sleep = false
+linear_damp = 0.0
+angular_damp = 0.0
+script = ExtResource( 1 )
+base_mesh = SubResource( 7 )
+base_material = SubResource( 8 )
+underlying_material = SubResource( 9 )
+chunk_mesh = SubResource( 10 )
+chunk_scale_adjustmenst = 0.8
+chunk_lifetime = 2.0
+chunk_physics_layer = 0
+debris_particles = ExtResource( 3 )
+debris_draw_instance = ExtResource( 6 )
+max_destruction_pieces = 3
+set_rigid_on_max_destruction = true
+
+[node name="DestructibleBody4" type="RigidBody" parent="."]
+transform = Transform( 0.531739, 0, 0.846909, 0, 3, 0, -0.846909, 0, 0.531739, 13.1906, 1.43874, 3.39561 )
+mode = 1
+contacts_reported = 4
+contact_monitor = true
+can_sleep = false
+linear_damp = 0.0
+angular_damp = 0.0
+script = ExtResource( 1 )
+base_mesh = SubResource( 11 )
+base_material = SubResource( 12 )
+underlying_material = SubResource( 9 )
+chunk_mesh = SubResource( 13 )
+chunk_scale_adjustmenst = 0.7
+chunk_physics_layer = 0
+debris_particles = ExtResource( 3 )
+debris_draw_instance = ExtResource( 6 )
+max_destruction_pieces = 3
+
+[node name="DestructibleBody5" type="RigidBody" parent="."]
+transform = Transform( -0.0311554, 0, -4.9999, 0, 5, 0, 4.9999, 0, -0.0311554, 18.525, 2.5, -3.264 )
+mode = 1
+contacts_reported = 4
+contact_monitor = true
+can_sleep = false
+linear_damp = 0.0
+angular_damp = 0.0
+script = ExtResource( 1 )
+base_mesh = SubResource( 11 )
+base_material = SubResource( 14 )
+underlying_material = SubResource( 9 )
+chunk_mesh = SubResource( 15 )
+chunk_scale_adjustmenst = 2.0
+chunk_physics_layer = 0
+debris_particles = ExtResource( 3 )
+debris_draw_instance = ExtResource( 6 )
+
+[node name="DestructibleBody6" type="RigidBody" parent="."]
+transform = Transform( 0.198615, 0, -0.980078, 0, 2, 0, 0.980078, 0, 0.198615, 9.24642, 0.43874, 1.66322 )
+mode = 1
+contacts_reported = 4
+contact_monitor = true
+can_sleep = false
+linear_damp = 0.0
+angular_damp = 0.0
+script = ExtResource( 1 )
+base_mesh = SubResource( 11 )
+base_material = SubResource( 16 )
+underlying_material = SubResource( 9 )
+chunk_mesh = SubResource( 17 )
+chunk_explosiveness = 10.0
+chunk_scale_adjustmenst = 0.7
+chunk_physics_layer = 0
+debris_particles = ExtResource( 3 )
+debris_draw_instance = ExtResource( 6 )
+max_destruction_pieces = 3
+
+[node name="DestructibleBody2" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.88137, -0.472428, 0, 0.472428, 0.88137, 5.87778, 0.0209592, 4.43344 )
+mode = 1
+contacts_reported = 4
+contact_monitor = true
+can_sleep = false
+linear_damp = 0.9
+angular_damp = 0.9
+script = ExtResource( 1 )
+base_mesh = SubResource( 18 )
+base_material = SubResource( 19 )
+underlying_material = SubResource( 9 )
+chunk_mesh = SubResource( 20 )
+chunk_damping = 0.9
+max_destruction_pieces = 4
+set_rigid_on_max_destruction = true
+
+[node name="io" parent="." instance=ExtResource( 7 )]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+rect_scale = Vector2( 2, 2 )
+rect_pivot_offset = Vector2( 4, 6 )
+text = "+"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="cake" type="RigidBody" parent="."]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 3.18948, -1.78531, -7.87755 )
+mode = 1
+contacts_reported = 4
+contact_monitor = true
+can_sleep = false
+script = ExtResource( 1 )
+base_mesh = ExtResource( 9 )
+base_material = SubResource( 21 )
+underlying_material = SubResource( 22 )
+chunk_mesh = SubResource( 23 )
+chunk_physics_layer = 0
+use_inertia = true
+inertia_tolerance = 1000.0
+max_destruction_pieces = 10
+
+[node name="box" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.00897, 14.9444, -5.87417 )
+mass = 100.0
+
+[node name="CollisionShape" type="CollisionShape" parent="box"]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
+shape = SubResource( 24 )
+
+[node name="MeshInstance" type="MeshInstance" parent="box/CollisionShape"]
+mesh = SubResource( 25 )
+material/0 = null

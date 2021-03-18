@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/cake.obj-aabf59d4ea228c871154fefb37a33ea4.mesh"
+
+[deps]
+
+files=[ "res://.import/cake.obj-aabf59d4ea228c871154fefb37a33ea4.mesh" ]
+
+source_file="res://addons/destructible_body/example/cake.obj"
+dest_files=[ "res://.import/cake.obj-aabf59d4ea228c871154fefb37a33ea4.mesh", "res://.import/cake.obj-aabf59d4ea228c871154fefb37a33ea4.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=false
